@@ -1,62 +1,59 @@
 /*
-Title: UCSB Theme CSS for xaringan slides
-Author: Nathaniel Grimes
-Updated: 06/13/2022
-Notes: Trying to set up a common theme for xaringan slides to be used by UCSB students, faculty, and researchers. Code adjumstements inspired by Joseph Caisllas initial design for Rutgers
+Title: Wisconsin theme for Xaringan presentations
+Author: Tuo Wang
+Updated: 06/12/2021
+Description: A UW-Madison theme for Xaringan presentations. Modifid based on 
+             Joseph V. Casillas's Rutgers theme
 References: https://github.com/jvcasillas/ru_xaringan
 */
-  
-/* Package defaults that we slightly tweak */
-  
-  a, a > code {
-    color: #FEBC11
-      text-decoration: none;
-  }
+
+/* Package defaults with slightly modification*/
+a, a > code {
+  color: #cc0033; /* rgb(249, 38, 114) */
+  text-decoration: none;
+}
 
 /* slightly lower and bigger than default */
-  .footnote {
-    position: absolute;
-    bottom: 1em;
-    padding-right: 4em;
-    font-size: 95%;
-  }
+.footnote {
+  position: absolute;
+  bottom: 1em;
+  padding-right: 4em;
+  font-size: 95%;
+}
 
 /* important code slightly red */
-  .remark-code-line-highlighted {
-    background-color: #FEBC11 !important;
-  }
+.remark-code-line-highlighted {
+  background-color: #FFD3DE !important;
+}
 
 /* color tweak */
-  .inverse {
-    background-color: #272822;
-      color: #777872;
-      text-shadow: 0 0 20px #333;
-  }
+.inverse {
+  background-color: #272822;
+  color: #777872;
+  text-shadow: 0 0 20px #333;
+}
 
 /* slightly spacing change */
-  .inverse h1, .inverse h2, .inverse h3 {
-    color: #f3f3f3;
-      line-height: 1.0em;
-  }
+.inverse h1, .inverse h2, .inverse h3 {
+  color: #f3f3f3;
+  line-height: 1.0em;
+}
 
-/* Two-column layout (slightly wider for aspect ration) */
-  .left-column {
-    color: #777;
-      width: 25%;
-    height: 92%;
-    float: left;
-  }
-
+/* Two-column layout */
+.left-column {
+  color: #282728	;
+  width: 25%;
+  height: 92%;
+  float: left;
+}
 .left-column h2:last-of-type, .left-column h3:last-child {
   color: #000;
 }
-
-/* slightly thiner to suppor aspect ration */
-  .right-column {
-    width: 70%;
-    float: right;
-    padding-top: 1em;
-  }
+.right-column {
+  width: 70%;
+  float: right;
+  padding-top: 0em;
+}
 
 .pull-left {
   float: left;
@@ -68,7 +65,7 @@ References: https://github.com/jvcasillas/ru_xaringan
   width: 45%;
 }
 
-.pull-right ~ * {
+.pull-right + * {
   clear: both;
 }
 
@@ -82,22 +79,21 @@ blockquote {
 }
 
 /* adjust table horizontal spacing */
-  th, td {
+th, td {
     padding:0 15px 0 15px;
-  }
+}
 
-/* remove color from tables */
-  table {
-    margin: auto;
-    border-top: none;
-    border-bottom: none;
-  }
-
-table thead th { border-bottom: none; }
-thead, tfoot, tr:nth-child(even) { background: none; }
+.remark-slide table {
+  margin: auto;
+  border-top: 1px solid #666;
+  border-bottom: 1px solid #666;
+}
+.remark-slide table thead th { border-bottom: 1px solid #ddd; }
+th, td { padding: 5px; }
+.remark-slide thead, .remark-slide tfoot, .remark-slide tr:nth-child(even) { background: #eee }
 
 /* leave this alone */
-  @page { margin: 0; }
+@page { margin: 0; }
 @media print {
   .remark-slide-scaler {
     width: 100% !important;
@@ -108,208 +104,179 @@ thead, tfoot, tr:nth-child(even) { background: none; }
   }
 }
 
-/*~~~~~~~~~~~~~~*/
-  /* UCSB additions */
-  /*~~~~~~~~~~~~~~*/
-  
-  /* Title slide */
-  
-  /* Add image and change bg color */
-  .title-slide {
-    background-image: url(https://github.com/nggrimes/ucsb-xaringan/blob/main/img/ucsb_logo.png);
-    background-position: 9% 15%;
-    background-size: 55px;
-    background-color: #fff;
-      padding-left: 100px;  /* delete this for 4:3 aspect ratio */
-  }
+/*~~~~~~~~~~~~~~~~~~~~~~*/
+/* UW-Madison additions */
+/*~~~~~~~~~~~~~~~~~~~~~~*/
 
-/* H1 fonts */
-  .title-slide h1 {
-    color: #003660;
-      padding-top: 250px;
-    font-weight: normal;
-    font-size: 45px;
-    line-height: 0.05;
-    text-align: left;
-    text-shadow: none;
-    padding-bottom: 18px;
-    margin-bottom: 18px;
-  }
+/* Title slide */
 
-/* H2 fonts */
-  .title-slide h2 {
-    color: #FEBC11;
-      font-size: 35px;
-    text-align: left;
-    text-shadow: none;
-    padding-top: 0px;
-    margin-top: 0px;
-  }
-
-/* H3 fonts */
-  .title-slide h3 {
-    font-size: 28px;
-    font-weight: normal;
-    color: #DCE1E5;
-      text-align: left;
-    text-shadow: none;
-    padding: 0px;
-    margin: 0px;
-    line-height: 1;
-  }
-
-/* Remove slide count */
-  .title-slide .remark-slide-number {
-    text-shadow: none;
-  }
-
-/*~~~~~~~~~~~~~~~~~~*/
-  /* SECTION DIVIDERS */
-  /*~~~~~~~~~~~~~~~~~~*/
-  
-  /* section divider blue */
-  .title-slide-section-blue {
-    background-color: #003660;
-      padding-left: 100px;  /* delete this for 4:3 aspect ratio */
-  }
-
-/* section divider blue H1 fonts */
-  .title-slide-section-blue h1, .title-slide-section-blue h2, .title-slide-section-blue h3, .title-slide-section-blue p {
-    color: #fff;
-  }
-
-/* section divider gaucho gold */
-  .title-slide-section-gold {
-    background-color: #FEBC11;
-      padding-left: 100px;  /* delete this for 4:3 aspect ratio */
-  }
-
-/* section divider gold H1 fonts */
-  .title-slide-section-gold h1, .title-slide-section-gold h2, .title-slide-section-gold h3 {
-    color: #3D4952;
-  }
-
-.title-slide-section-gold p {
-  color: #3D4952;
+/* Add image and change bg color */
+.title-slide {
+  background-image: url(https://raw.githubusercontent.com/ttuowang/Xaringan-wisconsin-theme/master/uwm-logo/color-flush-UWlogo-print.png);
+  background-position: 9% 15%;
+  background-size: 300px;
+  background-color: #fff;
+  padding-left: 100px;  /* delete this for 4:3 aspect ratio */
 }
 
-/*~~~~~~~~~~~~~~~~~~*/
-  /* FINAL SLIDE      */
-  /*~~~~~~~~~~~~~~~~~~*/
-  
-  .title-slide-final {
-    background-color: #272822;
-      color: #fff;
-      padding-left: 100px;
-    text-shadow: 0 0 20px #333;
-    text-align: center;
-  }
+/* H1 fonts */
+.title-slide h1 {
+  color: #cc0033;
+  padding-top: 100px;
+  font-weight: normal;
+  font-size: 60px;
+  text-align: center;
+  text-shadow: none;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
 
-.title-slide-final h1 {
-  color: #003660;
+/* H2 fonts */
+.title-slide h2 {
+  color: #cc0033;
+  font-size: 34px;
+  text-align: center;
+  text-shadow: none;
+  padding-bottom: 20px;
+  margin-top: 0px;
+}
+
+/* H3 fonts */
+.title-slide h3 {
+  font-size: 28px;
+  font-weight: normal;
+  color: #666666;
+  text-align: center;
+  text-shadow: none;
+  padding-bottom: 15px;
+  margin: 0px;
+  line-height: 1;
+}
+
+/* Remove slide count shadow */
+.title-slide .remark-slide-number {
+  text-shadow: none;
 }
 
 /*~~~~~~~~~~~~~~~~~~~~*/
-  /* Global adjustments */
-  /*~~~~~~~~~~~~~~~~~~~~*/
-  
-  /* Add padding to all slides for 16:9 aspect ratio */
-  .remark-slide-content {
-    padding-left: 100px;  /* delete this for 4:3 aspect ratio */
-  }
+/* Global adjustments */
+/*~~~~~~~~~~~~~~~~~~~~*/
+
+/* Add padding to all slides for 16:9 aspect ratio */
+.remark-slide-content {
+  padding-left: 100px;  /* delete this for 4:3 aspect ratio */
+  font-size: 21px;
+}
 
 /* Color adjustments for text */
-  
-  /* Make bold syntax compile to UCSB Blue */
-  strong {
-    color: #003660;
-  }
 
-.blue {
-  color: #003660;
+strong {
+  color: #ea5455;
 }
 
+.bold { font-weight: bold; }
 
-/* Add grey tag */
-  .grey {
-    color: #DCE1E5;
-  }
-
-.lightgrey {
-  color: #EEF0F2;
+.uw-red{
+  color: #c5050c;
 }
 
-/* Force black */
-  .black {
-    color: #111517;
-    font-weight: bold;
-  }
+.uw-red-dark{
+  color: #9b0000;
+}
 
-/* Add white tag */
-  .white {
-    color: white;
-  }
+.uw-gray-blue{
+  color: #dadfe1;
+}
 
-/* Add sea green tag */
-  .seagreen {
-    color: #09847A
-  }
+.uw-gray-darker{
+  color: #646569;
+}
 
-/* Add aqua web tag */
-  .aqua {
-    color: #047C91
-  }
+.uw-gray-darkest{
+  color: #282728;
+}
 
-/* Add moss tag */
-  .moss {
-    color: #6D7D33
-  }
+.uw-anchor-color{
+  color: #0479a8;
+}
 
-/* Add coral tag */
-  .coral {
-    color: #EF5645
-  }
+.p1-yellow {
+  color: #f9ed69;
+}
 
-/* Add clay tag */
-  .clay {
-    color: #DCD6CC
-  }
+.p1-orange {
+  color: #f08a5d;
+}
 
-/* Add sandstone tag */
-  .sandstone {
-    color: #C9BF9D
-  }
+.p1-darkred {
+  color: #b83b5e;
+}
 
-/* Add mist tag */
-  .mist {
-    color: #9CBEBE
-  }
+.p1-purple {
+  color: #6a2c70;
+}
+
+.p2-green {
+  color: #95e1d3;
+}
+
+.p2-blue {
+  color: #769fcd;
+  font-weight: bold;
+}
+
+.p2-yellow {
+  color: #fce38a;
+  font-weight: bold;
+}
+
+.p2-red {
+  color: #f38181;
+}
 
 /* Color adjustments to headers */
-  h1 {
-    color:#003660;
-  }
+h1 {
+  color: #cc0033;
+}
 
 h3 {
-  color: #FEBC11;
+  color: #515151;
 }
 
 /* Font size tags */
-  .big {
-    font-size: 1.5em;
-  }
+.big {
+  font-size: 1.5em;
+}
 
-/* ucsb blockquote */
-  uc-blockquote {
-    display: block;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    margin-left: 40px;
-    margin-right: 40px;
-    border-left: solid 10px #003660;
-    background-color: #9CBEBE;
-      padding: 1em;
-    color: #fff;
-      -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-  }
+/* uw-madison blockquote */
+uw-blockquote {
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 40px;
+  margin-right: 40px;
+  border-left: solid 20px #c5050c;
+  background-color: #dadfe1	;
+  padding: 1em;
+  color: #000000;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+/*~~~~~~~~~~~~~~*/
+/* Highlight    */
+/*~~~~~~~~~~~~~~*/
+
+.highlight-last-item > ul > li, 
+.highlight-last-item > ol > li {
+  opacity: 0.5;
+}
+.highlight-last-item > ul > li:last-of-type,
+.highlight-last-item > ol > li:last-of-type {
+  opacity: 1;
+}
+
+.bold-last-item > ul > li:last-of-type,
+.bold-last-item > ol > li:last-of-type {
+  font-weight: bold;
+}
