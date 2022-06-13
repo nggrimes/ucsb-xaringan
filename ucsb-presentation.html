@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>UCSB Xaringan Demonstration</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Nathaniel Grimes" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/uwm-fonts.css" rel="stylesheet" />
+    <link href="libs/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="ucsb.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# UCSB Xaringan Demonstration
+]
+.subtitle[
+## Showcase how to use UCSB theme
+]
+.author[
+### Nathaniel Grimes
+]
+.institute[
+### Bren School of Environmental Science &amp; Management
+]
+.institute[
+### University of California at Santa Barbara
+]
+.date[
+### 6/13/2021
+]
+
+---
+
+
+
+
+# Xaringan presentation
+
+## What is Xaringan?
+
+- [`Xaringan`](https://github.com/yihui/xaringan) is an R package that can be used to create slides
+
+- The name comes from Sharingan from the anime Naruto! 😄
+
+- How to install:
+
+
+```r
+devtools::install_github('yihui/xaringan')
+```
+
+- How to get started:
+
+    - [Xaringan github](https://github.com/yihui/xaringan)
+
+---
+# Xaringan presentation
+
+- Here are some great tutorials:
+
+  - [Xaringan github](https://github.com/yihui/xaringan)
+
+  - [Yihui's tutorial](https://slides.yihui.org/xaringan/#1)
+  
+  - [Making Slides in the Tada!-verse](https://apreshill.github.io/data-vis-labs-2018/slides/06-slides_xaringan.html#1)
+  
+  - [Making slides in R Markdown](http://arm.rbind.io/slides/xaringan.html#1)
+
+- Some useful extensions for `Xaringan`
+
+  - [`xaringanExtra` R package](https://github.com/gadenbuie/xaringanExtra)
+  
+  - [`xaringanthemer` R packge](https://pkg.garrickadenbuie.com/xaringanthemer/index.html)
+  
+  - [Xaringan Gallery](https://xaringan.gallery/)
+  
+  - [`DT` R package for interactive tables](https://rstudio.github.io/DT/)
+
+
+---
+# UCSB theme
+
+- How to enable the UCSB theme: Need to replace placeholders
+
+```md
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["XXX", "fonts"]
+```
+
+- The UCSB theme for `Xaringan` presentation is suitable to work with a 16:9 aspect ratio
+
+```md
+nature:
+  highlightStyle: github
+  highlightLines: true
+  countIncrementalSlides: false
+  ratio: "16:9"
+```
+
+---
+# UCSB themes theme
+
+- We can make `blockquotes` by calling `&lt;uc-blockquote&gt;some texts&lt;/uc-blockquote&gt;`
+
+&lt;uc-blockquote&gt;This is a blocked quote&lt;/uc-blockquote&gt; 
+
+- Highlight text using `**text**` like **this**
+
+- Italic text using `*text*` like *this*
+
+- Bold text using `.bold[text]` like .bold[text]
+
+---
+# UCSB theme
+
+- We can change the color of any text by using `.color[text]`. I included all the colors from the UCSB brand team for quick ready access
+
+  - [UCSB palette](https://brand.ucsb.edu/visual-identity/color#digital): `blue[text]`,`.grey[text]`,`.gold[text]`,...fill out the rest
+  - .blue[UCSB Navy], .grey[Grey accent], .seagreen[Seagreen], .mist[Mist], .clay[Clay], .sandstone[sandstone]
+
+
+
+---
+class: bold-last-item
+
+# UCSB theme
+
+- add `class: bold-last-item` at the beginning of each slide to switch on the **Bold-Last-Item**  Still doesn't work
+
+```css
+---
+class: bold-last-item
+```
+--
+- For example
+--
+- Bullet list 1
+--
+- Bullet list 2
+--
+- Bullet list 3
+---
+class: highlight-last-item
+
+# UCSB theme
+- add `class: highlight-last-item` at the beginning of each slide to switch on the **Highlight-Last-Item**
+--
+- For example
+--
+- Bullet list 1
+--
+- Bullet list 2
+--
+- Bullet list 3
+---
+
+# R code and plot output
+
+
+```r
+library("tidyverse")
+cars %&gt;% 
+  ggplot(aes(x = dist, y = speed)) + 
+  geom_point() + 
+  geom_smooth(method = 'lm', formula = y ~ poly(x, 2)) + 
+  theme_bw(base_size = 24) 
+```
+
+&lt;img src="ucsb-presentation_files/figure-html/unnamed-chunk-2-1.png" width="648" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+class: title-slide-section-blue
+
+# Change the color palette with a new section
+
+### Sub set font
+
+- How does the text look
+
+- Use **bold**
+
+---
+
+class: title-slide-section-gold
+
+# Test first level
+
+### Test second level
+
+---
+class: title-slide-final
+
+# Final Slide
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
