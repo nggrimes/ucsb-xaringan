@@ -183,3 +183,5 @@ class: title-slide-section-gold
 class: title-slide-final
 
 # Final Slide
+
+usethis::use_github_pages(branch = "main")<button class="xaringanextra-clipboard-button" type="button" aria-label="Copy code to clipboard" style="color: rgb(0, 0, 0);"><i class="fa fa-clipboard"></i> Copy Code</button>
