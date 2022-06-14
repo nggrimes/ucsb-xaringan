@@ -174,7 +174,7 @@ thead, tfoot, tr:nth-child(even) { background: none; }
   }
 
 /* section divider blue H1 fonts */
-  .title-slide-section-blue h1, .title-slide-section-blue h2, .title-slide-section-blue h3, .title-slide-section-blue p {
+  .title-slide-section-blue h1, .title-slide-section-blue h2, .title-slide-section-blue h3, .title-slide-section-blue p, .title-slide-section-blue ul{
     color: #fff;
   }
 
@@ -185,7 +185,7 @@ thead, tfoot, tr:nth-child(even) { background: none; }
   }
 
 /* section divider gold H1 fonts */
-  .title-slide-section-gold h1, .title-slide-section-gold h2, .title-slide-section-gold h3, .title-slide-section-gold p {
+  .title-slide-section-gold h1, .title-slide-section-gold h2, .title-slide-section-gold h3, .title-slide-section-gold p, .title-slide-section-gold {
     color: #3D4952;
   }
 
