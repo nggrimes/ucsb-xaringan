@@ -9,7 +9,7 @@ date: "6/13/2021"
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: ["ucsb.css","uwm-fonts"]
+    css: ["ucsb.css","chocolate-fonts"]
     nature:
       highlightStyle: github
       highlightLines: true
@@ -64,6 +64,16 @@ devtools::install_github('yihui/xaringan')
 
 
 ---
+# Shoutout to Tuo Wang and Joseph Casillas
+
+Their awesome work on designing UW-Madison and Rutgers Xaringan presentations laid most of the groundwork and conceptually idea for a UCSB specific theme!
+
+[Check out Tuo's UW](https://ttuowang.github.io/Xaringan-wisconsin-theme/#1)
+
+[And Joseph's Rutgers](https://www.jvcasillas.com/ru_xaringan/slides/index.html#1)
+
+---
+
 # UCSB theme
 
 - How to enable the UCSB theme: Need to replace placeholders
@@ -72,10 +82,12 @@ devtools::install_github('yihui/xaringan')
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: ["XXX", "fonts"]
+    css: ["ucsb.css", "fonts"]
 ```
 
-- The UCSB theme for `Xaringan` presentation is suitable to work with a 16:9 aspect ratio
+- Note: Right now it would best to fork in my github and load the css, but I hope to get it within the official `xaringan` options
+
+- The UCSB theme for `Xaringan` works best with a 16:9 aspect ratio
 
 ```md
 nature:
@@ -84,9 +96,84 @@ nature:
   countIncrementalSlides: false
   ratio: "16:9"
 ```
+---
+
+# Choosing Fonts
+
+- Eventually settle on one group of consistent fonts with `ucsb-fonts.css` to throw in the `YAML`
+
+  - For now experiment with different font css files
+
+- Can manually define fonts with `xaringanthemer`
+
+- Make a code chunk after setting code options
+
+```{r fonts, eval=FALSE,echo=TRUE}
+xaringanthemer::style_xaringan(text_font_google = google_font("Poppins"),
+                               header_font_google = google("Montserrat"))
+```
+
 
 ---
-# UCSB themes theme
+class: inverse, middle, center
+
+# Styling in UCSB Xaringan
+
+---
+
+class: title-slide-section-blue, middle, center
+
+# Alternate style
+
+---
+
+class: title-slide-section-gold, middle, center
+
+# One more for the Gaucho Gold
+
+---
+
+# Define styles through the class definition
+
+At the beginning of each new slide break define the "class of slide to be used"
+``` css
+class: inverse, middle, center
+```
+`inverse` is the complete opposite of the default style. Uses the black background with white text.
+
+`middle`  where to put the headers vertically
+
+`center` where to put headers in a horizontal orientation
+
+---
+
+class: title-slide-section-blue
+
+# Change the color palette with a new section
+
+## Different headers
+
+- How does the text look
+
+- Use .bold[Bold to make stuff pop]
+
+---
+
+class: title-slide-section-gold
+
+# I made three verisons of alternate backdrops
+
+## Access them with `class: title-slide-section-color` at beginning
+
+- For example this slide uses `class: title-slide-setion-gold`
+
+- The blue preceding slide uses `class: title-slide-section-blue`
+
+- Black inverse is just `class: inverse`
+
+---
+
+# UCSB text styles
 
 - We can make `blockquotes` by calling `<uc-blockquote>some texts</uc-blockquote>`
 
@@ -96,16 +183,17 @@ nature:
 
 - Italic text using `*text*` like *this*
 
-- Bold text using `.bold[text]` like .bold[text]
+- Bold text using `.bold[text]` like .bold[this]
 
 ---
-# UCSB theme
+# UCSB text colors
 
-- We can change the color of any text by using `.color[text]`. I included all the colors from the UCSB brand team for quick ready access
+- We can change the color of any text by using `.color[text]`. I included all the colors from the UCSB brand team for quick access
 
-  - [UCSB palette](https://brand.ucsb.edu/visual-identity/color#digital): `blue[text]`,`.grey[text]`,`.gold[text]`,...fill out the rest
-  - .blue[UCSB Navy], .grey[Grey accent], .seagreen[Seagreen], .mist[Mist], .clay[Clay], .sandstone[sandstone]
+  - [UCSB palette from the brand website](https://brand.ucsb.edu/visual-identity/color#digital): `blue[text]`,`.grey[text]`,`.gold[text]`, `.lightgrey[text]`, `.black[text]`, `.seagreen[text]`, `.aqua[text]`, `.moss[text]`, `.coral[text]`, `.clay[text]`, `.sandstone[text]`, `.mist[text]`, `.white[text]`
+  - .blue[UCSB Navy], .grey[Grey accent], .gold[Gaucho Gold], .lightgrey[Light Grey], .black[Black], .seagreen[Seagreen], .aqua[Aqua], .moss[Moss], .coral[Coral], .mist[Mist], .clay[Clay], .sandstone[sandstone]
 
+- Some colors match better with different backgrounds. Check the UCSB palette link to see their recomendations
 
 
 ---
@@ -119,34 +207,87 @@ class: bold-last-item
 ---
 class: bold-last-item
 ```
+
 --
+
 - For example
+
 --
+
 - Bullet list 1
+
 --
+
 - Bullet list 2
+
 --
+
 - Bullet list 3
+
 ---
 class: highlight-last-item
 
 # UCSB theme
 - add `class: highlight-last-item` at the beginning of each slide to switch on the **Highlight-Last-Item**
+
 --
+
 - For example
+
 --
+
 - Bullet list 1
+
 --
+
 - Bullet list 2
+
 --
+
 - Bullet list 3
+
 ---
+
+
+# R Code and plot output
+
+- Xaringan easily highlights code to help point out important data considerations
+
+- Turn on code highlighting in the YAML under nature
+
+``` YAML
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+```
+
+
+---
+
+# R code and plot output
+
+- Interactively highlight code too!
+
+  - Makes the presentation more active and alive!
+
+```{r show-extra, echo=TRUE}
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,       
+  mute_unhighlighted_code = TRUE  
+)
+```
+
+---
+
 ```{r xaringan-extra-styles, echo=FALSE}
 xaringanExtra::use_extra_styles(
   hover_code_line = TRUE,         #<<
   mute_unhighlighted_code = TRUE  #<<
 )
 ```
+
 # R code and plot output
 
 ```{r, fig.height=4.5, fig.width=9, fig.retina=2, fig.align='center', message=FALSE, warning=FALSE}
@@ -158,30 +299,207 @@ cars %>%
   theme_bw(base_size = 24) 
 ```
 
+---
+
+```{r keep-highlight, echo=FALSE}
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,         #<<
+  mute_unhighlighted_code = FALSE  #<<
+)
+```
+
+
+# Code Highlighting
+
+
+.pull-left[
+Wrap with `{{}}`
+
+````
+`r ''````{r tidy=FALSE}
+if (TRUE) {
+*{{ message("Very important!") }}
+}
+```
+````
+Output:
+```{r tidy=FALSE,eval=FALSE}
+if (TRUE) {
+{{ message("Very important!") }}
+}
+```
+
+
+]
+
+.pull-right[
+An example of using the trailing comment `#<<` to highlight lines:
+
+````markdown
+`r ''```{r tidy=FALSE}
+library(ggplot2)
+ggplot(mtcars) + 
+  aes(mpg, disp) + 
+  geom_point() +   #<<
+  geom_smooth()    #<<
+```
+````
+
+Output:
+
+```{r tidy=FALSE, eval=FALSE}
+library(ggplot2)
+ggplot(mtcars) + 
+  aes(mpg, disp) + 
+  geom_point() +   #<<
+  geom_smooth()    #<<
+```
+
+]
 
 ---
 
+# Interactive Data Tables 
+
+```{r eval=require('DT'), tidy=FALSE}
+DT::datatable(
+  head(iris, 10),
+  fillContainer = FALSE, options = list(pageLength = 5)
+)
+```
+
+
+---
 class: title-slide-section-blue
 
-# Change the color palette with a new section
+# Other really cool stuff!
 
-### Sub set font
-
-- How does the text look
-
-- Use **bold**
+.white[That concludes most of the UCSB specific stuff, but in case you are not familiar with xaringan and want to convert I added some highlights of other amazing features unique to Xaringan.  Most of it taken from Yihui Xie's work]
 
 ---
 
-class: title-slide-section-gold
+# Moon Reader
 
-# Test first level
+- Hate having to knit all the time just to see what the format looks like?
 
-### Test second level
+- New add in moon reader allows you to see the result in real time for all R markdown files!
+
+- Just add to YAML and activate through the addin tab
+
+``` yaml
+
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["ucsb.css","uwm-fonts"]
+    nature:
+```
+---
+
+# Timing
+
+- To help practice presentations to make sure you stay on time, there is a timer feature that marks how long you stayed at slide
+
+- For example you can set the timer for 1:00 minute in the `YAML` nature
+
+``` yaml
+
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["ucsb.css","uwm-fonts"]
+    nature:
+      countdown: 60000
+```
+
+- Past 1:00 the time turns red and keeps going
+
+---
+
+# Automatic transition
+
+Autoplay forces the slides to switch after a set time
+
+``` yaml
+
+output:
+  xaringan::moon_reader:
+    nature:
+      autoplay: 30000
+```
+And can loop once you reach the last slide
+
+``` yaml
+
+output:
+  xaringan::moon_reader:
+    nature:
+      autoplay: 
+      interval: 30000
+        loop: true
+```
+
+---
+
+# Easy to make columns
+
+With `.pull-left` and `.pull-right` its easy to make columns as opposed to normal markdown and especially beamer
+
+.pull-left[
+- Sample Text
+
+- Do some math $\alpha+\beta=\delta$
+
+- [See this presentation for great examples](https://www.kirenz.com/slides/xaringan-demo-slides.html#18)
+]
+
+.pull-right[
+- works with code and figures
+
+```{r, echo=TRUE, fig.height=4, fig.width= 5}
+ggplot(cars,aes(x=speed,y=dist))+
+  geom_point()+
+  theme_bw()
+```
+
+]
+
+---
+# Caution
+
+
+## Math expressions
+
+$$
+\begin{aligned}
+B_{t+1}&=rB(1-\frac{B}{k})-qBF  &\text{Where F=$\sum^n_i e_i$} \\
+qBF&=rB(1-\frac{B}{k})  &\text{impose steady state}  \\
+\bar{B}& =k(1-\frac{qF}{r})  &\text{solve for steady state biomass} \\
+\bar{B}&=k(1-\frac{q(f_i+(n-1)f_{\sim i})}{r})  &\text{Breakout total effort}
+\end{aligned}
+$$
+
+- Basic equations work, but doesn't include more advance settings like equation name and referencing
+
+---
+# Caution continued
+
+## Easiest while online
+
+- Because it builds the html in browser you will need internet connection to use
+
+  - Also to save is best served with github pages which can be a bit cumbersome
+  
+- There are ways to use it offline, but the remark.js needs to be downloaded prior to using and the fonts can't use Google Fonts
+
+- Can save as pdf from browser, but may loose some aspect ratio and all interactivity
 
 ---
 class: title-slide-final
 
 # Final Slide
 
-usethis::use_github_pages(branch = "main")<button class="xaringanextra-clipboard-button" type="button" aria-label="Copy code to clipboard" style="color: rgb(0, 0, 0);"><i class="fa fa-clipboard"></i> Copy Code</button>
+## Give thanks to the people
+
+### All that donor money
+

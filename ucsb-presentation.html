@@ -5,8 +5,17 @@
     <meta charset="utf-8" />
     <meta name="author" content="Nathaniel Grimes" />
     <script src="libs/header-attrs/header-attrs.js"></script>
-    <link href="libs/remark-css/uwm-fonts.css" rel="stylesheet" />
+    <link href="libs/remark-css/chocolate-fonts.css" rel="stylesheet" />
     <link href="libs/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <link href="libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="libs/datatables-binding/datatables.js"></script>
+    <script src="libs/jquery/jquery-3.6.0.min.js"></script>
+    <link href="libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="libs/dt-core/js/jquery.dataTables.min.js"></script>
+    <link href="libs/crosstalk/css/crosstalk.min.css" rel="stylesheet" />
+    <script src="libs/crosstalk/js/crosstalk.min.js"></script>
     <link rel="stylesheet" href="ucsb.css" type="text/css" />
   </head>
   <body>
@@ -43,7 +52,7 @@ class: center, middle, inverse, title-slide
 
 - [`Xaringan`](https://github.com/yihui/xaringan) is an R package that can be used to create slides
 
-- The name comes from Sharingan from the anime Naruto! 😂
+- The name comes from Sharingan from the anime Naruto! 😆
 
 - How to install:
 
@@ -81,6 +90,16 @@ devtools::install_github('yihui/xaringan')
 
 
 ---
+# Shoutout to Tuo Wang and Joseph Casillas
+
+Their awesome work on designing UW-Madison and Rutgers Xaringan presentations laid most of the groundwork and conceptually idea for a UCSB specific theme!
+
+[Check out Tuo's UW](https://ttuowang.github.io/Xaringan-wisconsin-theme/#1)
+
+[And Joseph's Rutgers](https://www.jvcasillas.com/ru_xaringan/slides/index.html#1)
+
+---
+
 # UCSB theme
 
 - How to enable the UCSB theme: Need to replace placeholders
@@ -89,10 +108,12 @@ devtools::install_github('yihui/xaringan')
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: ["XXX", "fonts"]
+    css: ["ucsb.css", "fonts"]
 ```
 
-- The UCSB theme for `Xaringan` presentation is suitable to work with a 16:9 aspect ratio
+- Note: Right now it would best to fork in my github and load the css, but I hope to get it within the official `xaringan` options
+
+- The UCSB theme for `Xaringan` works best with a 16:9 aspect ratio
 
 ```md
 nature:
@@ -101,9 +122,85 @@ nature:
   countIncrementalSlides: false
   ratio: "16:9"
 ```
+---
+
+# Choosing Fonts
+
+- Eventually settle on one group of consistent fonts with `ucsb-fonts.css` to throw in the `YAML`
+
+  - For now experiment with different font css files
+
+- Can manually define fonts with `xaringanthemer`
+
+- Make a code chunk after setting code options
+
+
+```r
+xaringanthemer::style_xaringan(text_font_google = google_font("Poppins"),
+                               header_font_google = google("Montserrat"))
+```
+
 
 ---
-# UCSB themes theme
+class: inverse, middle, center
+
+# Styling in UCSB Xaringan
+
+---
+
+class: title-slide-section-blue, middle, center
+
+# Alternate style
+
+---
+
+class: title-slide-section-gold, middle, center
+
+# One more for the Gaucho Gold
+
+---
+
+# Define styles through the class definition
+
+At the beginning of each new slide break define the "class of slide to be used"
+``` css
+class: inverse, middle, center
+```
+`inverse` is the complete opposite of the default style. Uses the black background with white text.
+
+`middle`  where to put the headers vertically
+
+`center` where to put headers in a horizontal orientation
+
+---
+
+class: title-slide-section-blue
+
+# Change the color palette with a new section
+
+## Different headers
+
+- How does the text look
+
+- Use .bold[Bold to make stuff pop]
+
+---
+
+class: title-slide-section-gold
+
+# I made three verisons of alternate backdrops
+
+## Access them with `class: title-slide-section-color` at beginning
+
+- For example this slide uses `class: title-slide-setion-gold`
+
+- The blue preceding slide uses `class: title-slide-section-blue`
+
+- Black inverse is just `class: inverse`
+
+---
+
+# UCSB text styles
 
 - We can make `blockquotes` by calling `&lt;uc-blockquote&gt;some texts&lt;/uc-blockquote&gt;`
 
@@ -113,16 +210,17 @@ nature:
 
 - Italic text using `*text*` like *this*
 
-- Bold text using `.bold[text]` like .bold[text]
+- Bold text using `.bold[text]` like .bold[this]
 
 ---
-# UCSB theme
+# UCSB text colors
 
-- We can change the color of any text by using `.color[text]`. I included all the colors from the UCSB brand team for quick ready access
+- We can change the color of any text by using `.color[text]`. I included all the colors from the UCSB brand team for quick access
 
-  - [UCSB palette](https://brand.ucsb.edu/visual-identity/color#digital): `blue[text]`,`.grey[text]`,`.gold[text]`,...fill out the rest
-  - .blue[UCSB Navy], .grey[Grey accent], .seagreen[Seagreen], .mist[Mist], .clay[Clay], .sandstone[sandstone]
+  - [UCSB palette from the brand website](https://brand.ucsb.edu/visual-identity/color#digital): `blue[text]`,`.grey[text]`,`.gold[text]`, `.lightgrey[text]`, `.black[text]`, `.seagreen[text]`, `.aqua[text]`, `.moss[text]`, `.coral[text]`, `.clay[text]`, `.sandstone[text]`, `.mist[text]`, `.white[text]`
+  - .blue[UCSB Navy], .grey[Grey accent], .gold[Gaucho Gold], .lightgrey[Light Grey], .black[Black], .seagreen[Seagreen], .aqua[Aqua], .moss[Moss], .coral[Coral], .mist[Mist], .clay[Clay], .sandstone[sandstone]
 
+- Some colors match better with different backgrounds. Check the UCSB palette link to see their recomendations
 
 
 ---
@@ -136,28 +234,82 @@ class: bold-last-item
 ---
 class: bold-last-item
 ```
+
 --
+
 - For example
+
 --
+
 - Bullet list 1
+
 --
+
 - Bullet list 2
+
 --
+
 - Bullet list 3
+
 ---
 class: highlight-last-item
 
 # UCSB theme
 - add `class: highlight-last-item` at the beginning of each slide to switch on the **Highlight-Last-Item**
+
 --
+
 - For example
+
 --
+
 - Bullet list 1
+
 --
+
 - Bullet list 2
+
 --
+
 - Bullet list 3
+
 ---
+
+
+# R Code and plot output
+
+- Xaringan easily highlights code to help point out important data considerations
+
+- Turn on code highlighting in the YAML under nature
+
+``` YAML
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+```
+
+
+---
+
+# R code and plot output
+
+- Interactively highlight code too!
+
+  - Makes the presentation more active and alive!
+
+
+```r
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,       
+  mute_unhighlighted_code = TRUE  
+)
+```
+
+---
+
+
 
 # R code and plot output
 
@@ -173,33 +325,214 @@ cars %&gt;%
 
 &lt;img src="ucsb-presentation_files/figure-html/unnamed-chunk-2-1.png" width="648" style="display: block; margin: auto;" /&gt;
 
+---
+
+
+
+
+# Code Highlighting
+
+
+.pull-left[
+Wrap with `{{}}`
+
+````
+```{r tidy=FALSE}
+if (TRUE) {
+*{{ message("Very important!") }}
+}
+```
+````
+Output:
+
+```r
+if (TRUE) {
+* message("Very important!") 
+}
+```
+
+
+]
+
+.pull-right[
+An example of using the trailing comment `#&lt;&lt;` to highlight lines:
+
+````markdown
+``{r tidy=FALSE}
+library(ggplot2)
+ggplot(mtcars) + 
+  aes(mpg, disp) + 
+  geom_point() +   #&lt;&lt;
+  geom_smooth()    #&lt;&lt;
+```
+````
+
+Output:
+
+
+```r
+library(ggplot2)
+ggplot(mtcars) + 
+  aes(mpg, disp) + 
+* geom_point() +
+* geom_smooth()
+```
+
+]
 
 ---
 
+# Interactive Data Tables 
+
+
+```r
+DT::datatable(
+  head(iris, 10),
+  fillContainer = FALSE, options = list(pageLength = 5)
+)
+```
+
+<div id="htmlwidget-e825191fa419feccfec7" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e825191fa419feccfec7">{"x":{"filter":"none","vertical":false,"fillContainer":false,"data":[["1","2","3","4","5","6","7","8","9","10"],[5.1,4.9,4.7,4.6,5,5.4,4.6,5,4.4,4.9],[3.5,3,3.2,3.1,3.6,3.9,3.4,3.4,2.9,3.1],[1.4,1.4,1.3,1.5,1.4,1.7,1.4,1.5,1.4,1.5],[0.2,0.2,0.2,0.2,0.2,0.4,0.3,0.2,0.2,0.1],["setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Sepal.Length<\/th>\n      <th>Sepal.Width<\/th>\n      <th>Petal.Length<\/th>\n      <th>Petal.Width<\/th>\n      <th>Species<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+
+
+---
 class: title-slide-section-blue
 
-# Change the color palette with a new section
+# Other really cool stuff!
 
-### Sub set font
-
-- How does the text look
-
-- Use **bold**
+.white[That concludes most of the UCSB specific stuff, but in case you are not familiar with xaringan and want to convert I added some highlights of other amazing features unique to Xaringan.  Most of it taken from Yihui Xie's work]
 
 ---
 
-class: title-slide-section-gold
+# Moon Reader
 
-# Test first level
+- Hate having to knit all the time just to see what the format looks like?
 
-### Test second level
+- New add in moon reader allows you to see the result in real time for all R markdown files!
+
+- Just add to YAML and activate through the addin tab
+
+``` yaml
+
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["ucsb.css","uwm-fonts"]
+    nature:
+```
+---
+
+# Timing
+
+- To help practice presentations to make sure you stay on time, there is a timer feature that marks how long you stayed at slide
+
+- For example you can set the timer for 1:00 minute in the `YAML` nature
+
+``` yaml
+
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["ucsb.css","uwm-fonts"]
+    nature:
+      countdown: 60000
+```
+
+- Past 1:00 the time turns red and keeps going
+
+---
+
+# Automatic transition
+
+Autoplay forces the slides to switch after a set time
+
+``` yaml
+
+output:
+  xaringan::moon_reader:
+    nature:
+      autoplay: 30000
+```
+And can loop once you reach the last slide
+
+``` yaml
+
+output:
+  xaringan::moon_reader:
+    nature:
+      autoplay: 
+      interval: 30000
+        loop: true
+```
+
+---
+
+# Easy to make columns
+
+With `.pull-left` and `.pull-right` its easy to make columns as opposed to normal markdown and especially beamer
+
+.pull-left[
+- Sample Text
+
+- Do some math `\(\alpha+\beta=\delta\)`
+
+- [See this presentation for great examples](https://www.kirenz.com/slides/xaringan-demo-slides.html#18)
+]
+
+.pull-right[
+- works with code and figures
+
+
+```r
+ggplot(cars,aes(x=speed,y=dist))+
+  geom_point()+
+  theme_bw()
+```
+
+![](ucsb-presentation_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+
+]
+
+---
+# Caution
+
+
+## Math expressions
+
+$$
+`\begin{aligned}
+B_{t+1}&amp;=rB(1-\frac{B}{k})-qBF  &amp;\text{Where F=$\sum^n_i e_i$} \\
+qBF&amp;=rB(1-\frac{B}{k})  &amp;\text{impose steady state}  \\
+\bar{B}&amp; =k(1-\frac{qF}{r})  &amp;\text{solve for steady state biomass} \\
+\bar{B}&amp;=k(1-\frac{q(f_i+(n-1)f_{\sim i})}{r})  &amp;\text{Breakout total effort}
+\end{aligned}`
+$$
+
+- Basic equations work, but doesn't include more advance settings like equation name and referencing
+
+---
+# Caution continued
+
+## Easiest while online
+
+- Because it builds the html in browser you will need internet connection to use
+
+  - Also to save is best served with github pages which can be a bit cumbersome
+  
+- There are ways to use it offline, but the remark.js needs to be downloaded prior to using and the fonts can't use Google Fonts
+
+- Can save as pdf from browser, but may loose some aspect ratio and all interactivity
 
 ---
 class: title-slide-final
 
 # Final Slide
 
-usethis::use_github_pages(branch = "main")&lt;button class="xaringanextra-clipboard-button" type="button" aria-label="Copy code to clipboard" style="color: rgb(0, 0, 0);"&gt;&lt;i class="fa fa-clipboard"&gt;&lt;/i&gt; Copy Code&lt;/button&gt;
+## Give thanks to the people
+
+### All that donor money
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
