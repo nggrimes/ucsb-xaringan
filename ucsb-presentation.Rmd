@@ -21,6 +21,11 @@ output:
 options(htmltools.dir.version = FALSE, htmltools.preserve.raw = FALSE)
 ```
 
+
+```{r xaringan, echo=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view","panelset"))
+```
+
 # Xaringan presentation
 
 ## What is Xaringan?
@@ -201,7 +206,7 @@ class: bold-last-item
 
 # UCSB theme
 
-- add `class: bold-last-item` at the beginning of each slide to switch on the **Bold-Last-Item**  Still doesn't work
+- add `class: bold-last-item` at the beginning of each slide to switch on the **Bold-Last-Item**  
 
 ```css
 ---
@@ -214,15 +219,15 @@ class: bold-last-item
 
 --
 
-- Bullet list 1
+- I really
 
 --
 
-- Bullet list 2
+- like to add
 
 --
 
-- Bullet list 3
+- emphasis
 
 ---
 class: highlight-last-item
@@ -465,10 +470,104 @@ ggplot(cars,aes(x=speed,y=dist))+
 ]
 
 ---
-# Caution
 
+# xaringanExtra package is loaded with dope features
 
-## Math expressions
+- [For a complete demonstration, check out Garrick Aden-Buie](https://github.com/gadenbuie/xaringanExtra)
+
+- I want to show the three most useful tools for teaching or presenting in general
+
+## How to enable xaringanExtra
+
+````
+`r ''````{r extra-setup,echo=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view","panelset","cool-function-3"))
+}
+```
+````
+- Loads all features in one go
+
+---
+# Tile View
+
+Enable tile view individually or all in one go as before
+
+```{r echo=TRUE,eval=FALSE}
+xaringanExtra::use_tile_view()
+```
+
+- Press the `O` (as in Oscar) to open up an interactive pane of slides to select which slide you want to jump to
+
+- Exit tile view by pressing `O` again
+
+---
+
+# Panelset to create tabbed panels like in Rmarkdown `.tabset`
+
+.panelset[
+.panel[.panel-name[Code]
+
+```{r echo=TRUE}
+panel_plot<-ggplot(mtcars,aes(x=mpg,y=cyl))+
+  geom_point()+
+  theme_bw()
+```
+
+]
+.panel[.panel-name[Plot]
+```{r echo=FALSE,out.width="80%"}
+panel_plot
+```
+  
+]
+.panel[.panel-name[xaringanCode]
+ ````markdown
+.panelset[
+.panel[.panel-name[R Code]
+
+```{r oplot, fig.show='hide'}`r ''`
+# ... r code ...
+```
+]
+
+.panel[.panel-name[Plot]
+
+```{r}
+panel_plot
+```
+
+]
+]
+````
+]
+]
+
+---
+
+# Copy code chunks
+
+```{r xaringanExtra-clipboard, echo=TRUE}
+xaringanExtra::use_clipboard()
+```
+
+Now a copy option appears in the top right corner of the code chunk
+
+```{r}
+r<-seq(1,10)
+
+y<-r^2+1
+```
+
+Very useful for teaching data science courses and allowing students to take prepared code to experiment with on their own time or begin teaching new principles
+
+---
+class: title-slide-section-gold
+
+# There are some issues with xaringan that I want to make users aware of and potential work arounds
+
+---
+
+# Math is hard
 
 $$
 \begin{aligned}
@@ -479,21 +578,52 @@ qBF&=rB(1-\frac{B}{k})  &\text{impose steady state}  \\
 \end{aligned}
 $$
 
+- Uses MathJax instead of Latex
+
 - Basic equations work, but doesn't include more advance settings like equation name and referencing
 
+- Everything has to be contained in the latex mathematical notation
+
 ---
-# Caution continued
 
-## Easiest while online
+# Going Offline
 
-- Because it builds the html in browser you will need internet connection to use
+- Because xaringan builds the html in browser you will need internet connection to show
 
-  - Also to save is best served with github pages which can be a bit cumbersome
+  - Before working on a plane or in a remote jungle set `self-contained: true` in the YAML
+  
+  - When knitting offline, I think it should be fine with `self-contained: true` since knitting uses `servr` to create a local browser that doesn't need internet connection
+  
+
+
+- To share with others, it needs to be hosted on github pages or Netly
   
 - There are ways to use it offline, but the remark.js needs to be downloaded prior to using and the fonts can't use Google Fonts
 
 - Can save as pdf from browser, but may loose some aspect ratio and all interactivity
 
+---
+
+# Going offline continued
+
+## Best practice for me has been to create a pdf of the final html using pagedown just in case the conference location doesn't have internet access
+
+- I do loose the greatest features of xaringan, but better to have a back up than no slides at all.
+
+```{r, eval=FALSE,echo=TRUE}
+install.packages(c("pagedown", "xaringan"))
+# make sure you have pagedown >= 0.2 and xaringan >= 0.9; if not, run
+# remotes::install_github(c('rstudio/pagedown', 'yihui/xaringan'))
+
+pagedown::chrome_print("path/to/your/slides.Rmd")
+
+# or just pass the HTML output file path to chrome_print()
+pagedown::chrome_print("path/to/your/slides.html")
+```
+
+- pagedown saves a pdf in your file directory with the html and .rmd
+
+- [Check out this link for more options](https://github.com/yihui/xaringan/wiki/Export-Slides-to-PDF)
 ---
 class: title-slide-final
 
