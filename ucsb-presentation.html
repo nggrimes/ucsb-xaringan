@@ -8,8 +8,13 @@
     <link href="libs/remark-css/chocolate-fonts.css" rel="stylesheet" />
     <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
     <script src="libs/tile-view/tile-view.js"></script>
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
     <link href="libs/panelset/panelset.css" rel="stylesheet" />
     <script src="libs/panelset/panelset.js"></script>
+    <script src="libs/fabric/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
     <link href="libs/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
     <script src="libs/htmlwidgets/htmlwidgets.js"></script>
     <link href="libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
@@ -57,13 +62,19 @@ class: center, middle, inverse, title-slide
 
 
 
+&lt;style type="text/css"&gt;
+.xe-scribble__tools.minimized {
+  display: none;
+}
+&lt;/style&gt;
+
 # Xaringan presentation
 
 ## What is Xaringan?
 
 - [`Xaringan`](https://github.com/yihui/xaringan) is an R package that can be used to create slides
 
-- The name comes from Sharingan from the anime Naruto! 😆
+- The name comes from Sharingan from the anime Naruto! 😂
 
 - How to install:
 
@@ -108,6 +119,8 @@ Their awesome work on designing UW-Madison and Rutgers Xaringan presentations la
 [Check out Tuo's UW](https://ttuowang.github.io/Xaringan-wisconsin-theme/#1)
 
 [And Joseph's Rutgers](https://www.jvcasillas.com/ru_xaringan/slides/index.html#1)
+
+And of course to ![Yihui Xie](https://yihui.org/en/) for developing Xaringan all the other amazing features of Rmarkdown as well!
 
 ---
 
@@ -210,7 +223,6 @@ class: title-slide-section-gold
 - Black inverse is just `class: inverse`
 
 ---
-
 # UCSB text styles
 
 - We can make `blockquotes` by calling `&lt;uc-blockquote&gt;some texts&lt;/uc-blockquote&gt;`
@@ -334,7 +346,7 @@ cars %&gt;%
   theme_bw(base_size = 24) 
 ```
 
-&lt;img src="ucsb-presentation_files/figure-html/unnamed-chunk-2-1.png" width="648" style="display: block; margin: auto;" /&gt;
+&lt;img src="ucsb-presentation_files/figure-html/unnamed-chunk-3-1.png" width="648" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -393,6 +405,33 @@ ggplot(mtcars) +
 
 ---
 
+# Can also make three columns
+
+.column-left[&lt;img src="https://images.pexels.com/photos/6739178/pexels-photo-6739178.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1260&amp;h=750&amp;dpr=2" width="200"/&gt;
+
+.large[.bold[ You can add images with text edits]]
+]
+
+.column-center[
+
+&lt;div class="figure"&gt;
+&lt;img src="ucsb-presentation_files/figure-html/unnamed-chunk-6-1.png" alt="Add R plots and code" width="80%" /&gt;
+&lt;p class="caption"&gt;Add R plots and code&lt;/p&gt;
+&lt;/div&gt;
+
+
+]
+
+.column-right[ .center[## Make Headers]
+
+Just use `.column-left[]`,`.column-middle[]`, and `column-right[]`
+
+I have found the right column to be a bit finicky at first with images, but once you add text below it snaps to the right spot
+ 
+]
+
+---
+
 # Interactive Data Tables 
 
 
@@ -403,9 +442,8 @@ DT::datatable(
 )
 ```
 
-<div id="htmlwidget-324e74514ef0522af455" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-324e74514ef0522af455">{"x":{"filter":"none","vertical":false,"fillContainer":false,"data":[["1","2","3","4","5","6","7","8","9","10"],[5.1,4.9,4.7,4.6,5,5.4,4.6,5,4.4,4.9],[3.5,3,3.2,3.1,3.6,3.9,3.4,3.4,2.9,3.1],[1.4,1.4,1.3,1.5,1.4,1.7,1.4,1.5,1.4,1.5],[0.2,0.2,0.2,0.2,0.2,0.4,0.3,0.2,0.2,0.1],["setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Sepal.Length<\/th>\n      <th>Sepal.Width<\/th>\n      <th>Petal.Length<\/th>\n      <th>Petal.Width<\/th>\n      <th>Species<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
-
+<div id="htmlwidget-ad7b87bf349271e6075f" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ad7b87bf349271e6075f">{"x":{"filter":"none","vertical":false,"fillContainer":false,"data":[["1","2","3","4","5","6","7","8","9","10"],[5.1,4.9,4.7,4.6,5,5.4,4.6,5,4.4,4.9],[3.5,3,3.2,3.1,3.6,3.9,3.4,3.4,2.9,3.1],[1.4,1.4,1.3,1.5,1.4,1.7,1.4,1.5,1.4,1.5],[0.2,0.2,0.2,0.2,0.2,0.4,0.3,0.2,0.2,0.1],["setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Sepal.Length<\/th>\n      <th>Sepal.Width<\/th>\n      <th>Petal.Length<\/th>\n      <th>Petal.Width<\/th>\n      <th>Species<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 ---
 class: title-slide-section-blue
@@ -501,7 +539,7 @@ ggplot(cars,aes(x=speed,y=dist))+
   theme_bw()
 ```
 
-![](ucsb-presentation_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+![](ucsb-presentation_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
 
 ]
 
@@ -553,13 +591,13 @@ panel_plot&lt;-ggplot(mtcars,aes(x=mpg,y=cyl))+
 
 ]
 .panel[.panel-name[Plot]
-&lt;img src="ucsb-presentation_files/figure-html/unnamed-chunk-9-1.png" width="80%" /&gt;
+&lt;img src="ucsb-presentation_files/figure-html/unnamed-chunk-11-1.png" width="33%" style="display: block; margin: auto;" /&gt;
   
 ]
 .panel[.panel-name[xaringanCode]
  ````markdown
 .panelset[
-.panel[.panel-name[R Code]
+.panel[.panel-name[Code]
 
 ```{r oplot, fig.show='hide'}
 # ... r code ...
@@ -572,8 +610,6 @@ panel_plot&lt;-ggplot(mtcars,aes(x=mpg,y=cyl))+
 ```r
 panel_plot
 ```
-
-![](ucsb-presentation_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
 
 ]
 ]
@@ -600,6 +636,88 @@ y&lt;-r^2+1
 ```
 
 Very useful for teaching data science courses and allowing students to take prepared code to experiment with on their own time or begin teaching new principles
+
+---
+background-image: url("https://media.wired.com/photos/60abf2c7f83409ce52d3c67f/191:100/w_2400,h_1256,c_limit/Science_forest_1167053895.jpg")
+background-position: center
+background-size: contain
+
+# .coral[Background-image creates beautiful backdrops]
+
+
+
+```css
+---
+background-image: url("link or file path")
+background-position: center
+background-size: contain
+```
+.gold[Add images In the slide properties just after making a new slide]
+
+.bold[.coral[Changing opacity of the background image or making columns with specific border colors requires going into the css file and is relatively complicated.
+
+The next slide shows a quick and I think sufficient workaround]]
+
+---
+background-image: url("https://media.wired.com/photos/60abf2c7f83409ce52d3c67f/191:100/w_2400,h_1256,c_limit/Science_forest_1167053895.jpg")
+background-position: center
+background-size: contain
+
+# .coral[We can use Tachyons to quickly style boxes to have the text pop]
+
+```markdown
+.bg-white.b--dark-green.ba.bw2.br3.shadow-5.ph4.mt4[
+Tachyons try to use simple marker combinations to match color, size, and other formatting to specific values. &lt;a href="https://roperzh.github.io/tachyons-cheatsheet/"&gt;Check out the cheatsheet&lt;/a&gt;
+]
+```
+.bg-white.b--dark-green.ba.bw2.br3.shadow-5.ph4.mt4[
+Tachyons try to use simple marker combinations to match color, size, and other formatting to specific values. &lt;a href="https://roperzh.github.io/tachyons-cheatsheet/"&gt;Check out the cheatsheet&lt;/a&gt;
+]
+
+.pull-left[
+  .red.bg-light-blue.b--navy.ba.bw2.br-pill.ph4.mt2[
+  - Make sure to add "tachyons" to xaringanExtra
+  ]
+]
+
+.pull-right[
+
+```r
+xaringanExtra::use_xaringan_extra(c("tile_view","panelset","tachyons"))
+```
+
+]
+???
+
+.color-name first to change text color, .bg-color-name for the background
+.b--color-name for the border color
+.ba unclear, but I think it controls all the size elements of the border
+.bw2 set border thickness to 2
+.br-pill make the border look like a pill
+.ph adds space between the text and the edge
+.mt controls space between boxes and other elements
+
+---
+background-image: url("https://media.wired.com/photos/60abf2c7f83409ce52d3c67f/191:100/w_2400,h_1256,c_limit/Science_forest_1167053895.jpg")
+background-position: 75% 40%
+background-size: 35%
+
+# Background image sizes and positions can be controled
+
+```css
+background-image: url("link or file path")
+background-position: 75% 40%
+background-size: 35%
+```
+.pull-left[## But there can be only one
+
+- Adding other images with `![]()` and `&lt;img src ...&gt;` still works as before
+
+- Notice how the background forest is behind Connor MacLeod
+]
+.pull-right[
+.center[![](img/highlander.jpg)]
+]
 
 ---
 class: title-slide-section-gold
@@ -634,6 +752,8 @@ $$
   - Before working on a plane or in a remote jungle set `self-contained: true` in the YAML
   
   - When knitting offline, I think it should be fine with `self-contained: true` since knitting uses `servr` to create a local browser that doesn't need internet connection
+  
+  - Can't use infinte moon reader with `self-contained: true`
   
 
 

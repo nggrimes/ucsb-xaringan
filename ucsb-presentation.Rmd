@@ -19,11 +19,19 @@ output:
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE, htmltools.preserve.raw = FALSE)
+
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 ```
 
 
 ```{r xaringan, echo=FALSE}
-xaringanExtra::use_xaringan_extra(c("tile_view","panelset"))
+xaringanExtra::use_xaringan_extra(c("tile_view","panelset","tachyons","scribble"))
+```
+
+```{css echo = FALSE}
+.xe-scribble__tools.minimized {
+  display: none;
+}
 ```
 
 # Xaringan presentation
@@ -76,6 +84,8 @@ Their awesome work on designing UW-Madison and Rutgers Xaringan presentations la
 [Check out Tuo's UW](https://ttuowang.github.io/Xaringan-wisconsin-theme/#1)
 
 [And Joseph's Rutgers](https://www.jvcasillas.com/ru_xaringan/slides/index.html#1)
+
+And of course to ![Yihui Xie](https://yihui.org/en/) for developing Xaringan all the other amazing features of Rmarkdown as well!
 
 ---
 
@@ -177,7 +187,6 @@ class: title-slide-section-gold
 - Black inverse is just `class: inverse`
 
 ---
-
 # UCSB text styles
 
 - We can make `blockquotes` by calling `<uc-blockquote>some texts</uc-blockquote>`
@@ -364,6 +373,50 @@ ggplot(mtcars) +
 
 ---
 
+# Can also make three columns
+
+.column-left[<img src="https://images.pexels.com/photos/6739178/pexels-photo-6739178.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" width="200"/>
+
+.large[.bold[ You can add images with text edits]]
+]
+
+.column-center[
+
+```{r echo=FALSE,fig.cap="Add R plots and code",out.width="80%"}
+library(palmerpenguins)
+ggplot(data = penguins, 
+                       aes(x = flipper_length_mm,
+                           y = body_mass_g)) +
+  geom_point(aes(color = species, 
+                 shape = species),
+             size = 3,
+             alpha = 0.8) +
+  scale_color_manual(values = c("darkorange","purple","cyan4")) +
+  labs(title = "Penguin size, Palmer Station LTER",
+       subtitle = "Flipper length and body mass for Adelie, Chinstrap and Gentoo Penguins",
+       x = "Flipper length (mm)",
+       y = "Body mass (g)",
+       color = "Penguin species",
+       shape = "Penguin species") +
+  theme(legend.position = c(0.2, 0.7),
+        plot.title.position = "plot",
+        plot.caption = element_text(hjust = 0, face= "italic"),
+        plot.caption.position = "plot")
+```
+
+
+]
+
+.column-right[ .center[## Make Headers]
+
+Just use `.column-left[]`,`.column-middle[]`, and `column-right[]`
+
+I have found the right column to be a bit finicky at first with images, but once you add text below it snaps to the right spot
+ 
+]
+
+---
+
 # Interactive Data Tables 
 
 ```{r eval=require('DT'), tidy=FALSE}
@@ -372,7 +425,6 @@ DT::datatable(
   fillContainer = FALSE, options = list(pageLength = 5)
 )
 ```
-
 
 ---
 class: title-slide-section-blue
@@ -507,7 +559,7 @@ xaringanExtra::use_tile_view()
 .panelset[
 .panel[.panel-name[Code]
 
-```{r echo=TRUE}
+```{r echo=TRUE,out.width="75%"}
 panel_plot<-ggplot(mtcars,aes(x=mpg,y=cyl))+
   geom_point()+
   theme_bw()
@@ -515,7 +567,7 @@ panel_plot<-ggplot(mtcars,aes(x=mpg,y=cyl))+
 
 ]
 .panel[.panel-name[Plot]
-```{r echo=FALSE,out.width="80%"}
+```{r echo=FALSE,out.width="33%",fig.align='center'}
 panel_plot
 ```
   
@@ -523,7 +575,7 @@ panel_plot
 .panel[.panel-name[xaringanCode]
  ````markdown
 .panelset[
-.panel[.panel-name[R Code]
+.panel[.panel-name[Code]
 
 ```{r oplot, fig.show='hide'}`r ''`
 # ... r code ...
@@ -532,7 +584,7 @@ panel_plot
 
 .panel[.panel-name[Plot]
 
-```{r}
+```{r ,eval=FALSE}
 panel_plot
 ```
 
@@ -559,6 +611,87 @@ y<-r^2+1
 ```
 
 Very useful for teaching data science courses and allowing students to take prepared code to experiment with on their own time or begin teaching new principles
+
+---
+background-image: url("https://media.wired.com/photos/60abf2c7f83409ce52d3c67f/191:100/w_2400,h_1256,c_limit/Science_forest_1167053895.jpg")
+background-position: center
+background-size: contain
+
+# .coral[Background-image creates beautiful backdrops]
+
+
+
+```css
+---
+background-image: url("link or file path")
+background-position: center
+background-size: contain
+```
+.gold[Add images In the slide properties just after making a new slide]
+
+.bold[.coral[Changing opacity of the background image or making columns with specific border colors requires going into the css file and is relatively complicated.
+
+The next slide shows a quick and I think sufficient workaround]]
+
+---
+background-image: url("https://media.wired.com/photos/60abf2c7f83409ce52d3c67f/191:100/w_2400,h_1256,c_limit/Science_forest_1167053895.jpg")
+background-position: center
+background-size: contain
+
+# .coral[We can use Tachyons to quickly style boxes to have the text pop]
+
+```markdown
+.bg-white.b--dark-green.ba.bw2.br3.shadow-5.ph4.mt4[
+Tachyons try to use simple marker combinations to match color, size, and other formatting to specific values. <a href="https://roperzh.github.io/tachyons-cheatsheet/">Check out the cheatsheet</a>
+]
+```
+.bg-white.b--dark-green.ba.bw2.br3.shadow-5.ph4.mt4[
+Tachyons try to use simple marker combinations to match color, size, and other formatting to specific values. <a href="https://roperzh.github.io/tachyons-cheatsheet/">Check out the cheatsheet</a>
+]
+
+.pull-left[
+  .red.bg-light-blue.b--navy.ba.bw2.br-pill.ph4.mt2[
+  - Make sure to add "tachyons" to xaringanExtra
+  ]
+]
+
+.pull-right[
+```{r echo=TRUE,eval=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view","panelset","tachyons"))
+```
+
+]
+???
+
+.color-name first to change text color, .bg-color-name for the background
+.b--color-name for the border color
+.ba unclear, but I think it controls all the size elements of the border
+.bw2 set border thickness to 2
+.br-pill make the border look like a pill
+.ph adds space between the text and the edge
+.mt controls space between boxes and other elements
+
+---
+background-image: url("https://media.wired.com/photos/60abf2c7f83409ce52d3c67f/191:100/w_2400,h_1256,c_limit/Science_forest_1167053895.jpg")
+background-position: 75% 40%
+background-size: 35%
+
+# Background image sizes and positions can be controled
+
+```css
+background-image: url("link or file path")
+background-position: 75% 40%
+background-size: 35%
+```
+.pull-left[## But there can be only one
+
+- Adding other images with `![]()` and `<img src ...>` still works as before
+
+- Notice how the background forest is behind Connor MacLeod
+]
+.pull-right[
+.center[![](img/highlander.jpg)]
+]
 
 ---
 class: title-slide-section-gold
@@ -593,6 +726,8 @@ $$
   - Before working on a plane or in a remote jungle set `self-contained: true` in the YAML
   
   - When knitting offline, I think it should be fine with `self-contained: true` since knitting uses `servr` to create a local browser that doesn't need internet connection
+  
+  - Can't use infinte moon reader with `self-contained: true`
   
 
 
