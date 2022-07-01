@@ -1,0 +1,69 @@
+---
+title: "UCSB Xaringan with Scribble"
+subtitle: "Useful drawing tool"
+author: "Nathaniel Grimes"
+institute: 
+  - "Bren School of Environmental Science & Management"
+  - "University of California at Santa Barbara"
+date: "6/13/2021"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["ucsb.css","chocolate-fonts"]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE, htmltools.preserve.raw = FALSE)
+
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+
+```{r xaringan, echo=FALSE}
+xaringanExtra::use_xaringan_extra(c("scribble"))
+```
+
+```{css echo = FALSE}
+.xe-scribble__tools.minimized {
+  display: none;
+}
+```
+
+# Scribble is a cool tool to write on top of slides
+
+## Add it through `xaringanExtra::use_scribble()` at the beginning of your slides
+
+Click `S` to open and engage scribble!
+
+---
+
+# Blank slide to draw to your heart's content
+
+---
+
+# Base scribble includes a pencil icon in the top right for all slides. I prefer to mask the icon so it isn't distracting
+
+```css
+.xe-scribble__tools.minimized {
+  display: none;
+}
+```
+
+- Include that chunk after loading in scribble to hide the pencil icon
+
+- Otherwise you can have `use_scribble()` and click on the pencil to engage drawing mode
+
+---
+
+# Limitations
+
+- In large presentations with lots of slides and features, scribble appears to slow down the slide transition time
+
+- Have to save slides as pdf to keep drawings otherwise they always disapper
+
+- Check out more options at [Garrick Aden-Buie's github](https://github.com/gadenbuie/xaringanExtra)

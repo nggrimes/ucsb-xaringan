@@ -28,11 +28,6 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 xaringanExtra::use_xaringan_extra(c("tile_view","panelset","tachyons","scribble"))
 ```
 
-```{css echo = FALSE}
-.xe-scribble__tools.minimized {
-  display: none;
-}
-```
 
 # Xaringan presentation
 
