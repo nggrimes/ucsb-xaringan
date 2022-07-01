@@ -25,7 +25,7 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 
 
 ```{r xaringan, echo=FALSE}
-xaringanExtra::use_xaringan_extra(c("tile_view","panelset","tachyons","scribble"))
+xaringanExtra::use_xaringan_extra(c("tile_view","panelset","tachyons"))
 ```
 
 
@@ -606,6 +606,21 @@ y<-r^2+1
 ```
 
 Very useful for teaching data science courses and allowing students to take prepared code to experiment with on their own time or begin teaching new principles
+---
+
+# Draw on slides to help teach or highlight!
+
+## Activate the scribble option in the extras chunk
+
+`xaringanExtra::use_scribble()`
+
+## [Try it out on this link](https://nggrimes.github.io/ucsb-xaringan/ucsb-scribble.html#1)
+
+- Note: Scribble slightly slowed down the transitions in this presentations because of the number of slides and the fact that I've added A LOT of extra features
+
+- Be aware of that lag
+
+## Works great with touchscreens and laptop pens!
 
 ---
 background-image: url("https://media.wired.com/photos/60abf2c7f83409ce52d3c67f/191:100/w_2400,h_1256,c_limit/Science_forest_1167053895.jpg")
